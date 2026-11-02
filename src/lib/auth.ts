@@ -6,7 +6,7 @@ import type { UiLocale } from "@/i18n/locales";
 import { service } from "./db";
 import { DUMMY_HASH, hashPassword, verifyPassword } from "./passwords";
 
-export type Role = "student" | "manager" | "teacher" | "owner";
+export type Role = "student" | "manager" | "owner";
 
 export type CurrentUser = {
   id: string;
@@ -14,9 +14,8 @@ export type CurrentUser = {
   fullName: string | null;
   role: Role;
   locale: UiLocale;
-  /** Если это профиль ребёнка: кто родитель и возрастная группа */
-  guardianId: string | null;
-  ageGroup: "kids" | "teens" | null;
+  /** Язык обучения в школе: определяет, какой тест по языку сдавать (кыргызский или русский) */
+  schoolLanguage: "ru" | "ky" | null;
 };
 
 const COOKIE = "session";
@@ -73,7 +72,7 @@ export async function login(emailRaw: string, password: string): Promise<LoginRe
   await startSession(row.id);
   return {
     ok: true,
-    user: { id: row.id, email: row.email, fullName: row.full_name, role: row.role, locale: row.locale, guardianId: null, ageGroup: null },
+    user: { id: row.id, email: row.email, fullName: row.full_name, role: row.role, locale: row.locale, schoolLanguage: null },
   };
 }
 
@@ -90,14 +89,14 @@ export const getCurrentUser = cache(async (): Promise<CurrentUser | null> => {
   if (!token) return null;
   const [row] = await service()<
     { id: string; email: string; full_name: string | null; role: Role; locale: CurrentUser["locale"];
-      guardian_id: string | null; age_group: "kids" | "teens" | null }[]
+      school_language: "ru" | "ky" | null }[]
   >`
-    select p.id, p.email, p.full_name, p.role, p.locale, p.guardian_id, p.age_group
+    select p.id, p.email, p.full_name, p.role, p.locale, p.school_language
     from sessions s join profiles p on p.id = s.user_id
     where s.token_hash = ${sha256(token)} and s.expires_at > now()`;
   return row
     ? { id: row.id, email: row.email, fullName: row.full_name, role: row.role, locale: row.locale,
-        guardianId: row.guardian_id, ageGroup: row.age_group }
+        schoolLanguage: row.school_language }
     : null;
 });
 
@@ -108,6 +107,7 @@ export type NewUser = {
   phone?: string | null;
   role?: Role;
   locale?: CurrentUser["locale"];
+  schoolLanguage?: "ru" | "ky" | null;
 };
 
 /** Создаёт пользователя. Если почта уже занята, возвращает null. */
@@ -119,9 +119,9 @@ export async function createUser(input: NewUser): Promise<string | null> {
     const [exists] = await tx`select 1 from profiles where lower(email) = ${email}`;
     if (exists) return null;
     const [p] = await tx<{ id: string }[]>`
-      insert into profiles (email, full_name, phone, role, locale)
+      insert into profiles (email, full_name, phone, role, locale, school_language)
       values (${email}, ${input.fullName ?? null}, ${input.phone ?? null},
-              ${input.role ?? "student"}, ${input.locale ?? "ru"})
+              ${input.role ?? "student"}, ${input.locale ?? "ru"}, ${input.schoolLanguage ?? null})
       returning id`;
     await tx`insert into credentials (user_id, password_hash) values (${p.id}, ${hash})`;
     return p.id;
@@ -196,7 +196,7 @@ export async function signInWithGoogle(input: { email: string; name: string | nu
     await startSession(row.id);
     return { ok: true as const, created: false };
   }
-  const locale = (["ru", "ky", "en", "uz", "kk", "es", "pt", "tr"] as const).find((l) => l === input.locale) ?? "ru";
+  const locale = (["ru", "ky"] as const).find((l) => l === input.locale) ?? "ru";
   const id = await createUser({
     email, password: randomBytes(24).toString("base64url"), fullName: input.name?.trim().slice(0, 120) || null, role: "student", locale,
   });

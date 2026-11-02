@@ -166,6 +166,7 @@ create table subscriptions (
   id         uuid primary key default gen_random_uuid(),
   user_id    uuid not null references profiles (id) on delete cascade,
   package_id uuid references packages (id),
+  payment_id uuid,                 -- платёж, по которому выдан доступ (для возврата)
   status     sub_status not null default 'active',
   source     text not null default 'payment' check (source in ('payment', 'manual')),
   granted_at timestamptz not null default now(),
@@ -197,6 +198,7 @@ create table payments (
   unique (method, provider_ref)
 );
 create index on payments (user_id);
+alter table subscriptions add foreign key (payment_id) references payments (id);
 
 ------------------------------------------------------------------------------
 -- Журнал действий сотрудников, лимиты и кэш ИИ
