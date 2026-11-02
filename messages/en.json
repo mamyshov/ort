@@ -1,0 +1,710 @@
+{
+  "Common": {
+    "appName": "Learning Platform"
+  },
+  "Language": {
+    "label": "Language",
+    "ru": "Русский",
+    "ky": "Кыргызча",
+    "en": "English"
+  },
+  "Home": {
+    "title": "Start speaking English: from your phone, at your own pace",
+    "subtitle": "Short video lessons, speaking practice with AI and exams with a certificate. All in one account.",
+    "cta": "Sign in",
+    "webinar": "Start for free",
+    "badge": "Online conversational English",
+    "levelCta": "Check your level",
+    "how": {
+      "title": "How learning works",
+      "steps": [
+        {
+          "t": "Watch short lessons",
+          "d": "Videos and materials open on your phone. Go at your own pace, progress is saved."
+        },
+        {
+          "t": "Talk with the AI partner",
+          "d": "Write in English any time. The partner gently corrects mistakes and explains."
+        },
+        {
+          "t": "Take the exam, get a certificate",
+          "d": "Tests are graded instantly, written tasks are reviewed by a teacher. Certificates can be verified by number."
+        }
+      ]
+    },
+    "features": {
+      "title": "Everything you need in one account",
+      "items": [
+        {
+          "i": "video",
+          "t": "Video lessons",
+          "d": "Lessons by module, search across materials, comfortable on a phone."
+        },
+        {
+          "i": "chat",
+          "t": "AI practice",
+          "d": "Speaking practice without embarrassment or queues. AI replies are always labeled."
+        },
+        {
+          "i": "cards",
+          "t": "Word cards",
+          "d": "Words from a lesson become flashcards for quick review."
+        },
+        {
+          "i": "plan",
+          "t": "Weekly plan",
+          "d": "A hint on what to review and when, so you don't quit in week two."
+        },
+        {
+          "i": "exam",
+          "t": "Exams",
+          "d": "Tests with instant results and tasks reviewed by a real teacher."
+        },
+        {
+          "i": "cert",
+          "t": "Certificate",
+          "d": "Issued by a teacher. Authenticity can be checked on the site by number."
+        }
+      ]
+    },
+    "level": {
+      "title": "Not sure where to start?",
+      "text": "A short test shows your level and suggests the right course."
+    },
+    "faq": {
+      "title": "Common questions",
+      "items": [
+        {
+          "q": "Do I need to know English to start?",
+          "a": "No. Take the level test and the platform will suggest a course."
+        },
+        {
+          "q": "Can I study on my phone?",
+          "a": "Yes. The account is designed for phones first: lessons, practice and tests work in a mobile browser."
+        },
+        {
+          "q": "Which languages is the interface in?",
+          "a": "Eight languages: English, Russian, Kyrgyz, Uzbek, Kazakh, Spanish, Portuguese and Turkish. Switch in one tap."
+        },
+        {
+          "q": "How do I pay?",
+          "a": "After signing up you'll get a personal offer with a discount and can pay by bank transfer or card. You choose the payment method when you order."
+        },
+        {
+          "q": "Who reviews work and issues the certificate?",
+          "a": "A teacher. AI can prepare a draft review, but a person always gives the grade and the certificate."
+        }
+      ]
+    },
+    "final": {
+      "title": "Start for free",
+      "text": "Sign up and we'll send you a personal discount on courses."
+    },
+    "footer": {
+      "terms": "Terms of offer",
+      "tagline": "English from your phone: video lessons, AI practice and a certificate.",
+      "learn": "Learn",
+      "account": "Account",
+      "legal": "Legal",
+      "forgot": "Forgot password?",
+      "rights": "© {year} {name}. All rights reserved."
+    },
+    "guarantees": [
+      "For every level",
+      "AI practice any time",
+      "Certificate verified by number"
+    ],
+    "goals": {
+      "title": "Why do you need English?",
+      "cta": "Start",
+      "items": [
+        {
+          "i": "chat",
+          "t": "Speak freely",
+          "d": "Speaking practice for daily life, travel and conversation."
+        },
+        {
+          "i": "work",
+          "t": "For work",
+          "d": "Business phrases, emails and interview preparation."
+        },
+        {
+          "i": "exam",
+          "t": "Pass an exam",
+          "d": "Tests and tasks with detailed feedback on mistakes."
+        }
+      ],
+      "text": "Pick what matters to you. We'll suggest where to start."
+    },
+    "packages": {
+      "title": "Choose a program",
+      "text": "The discount is for new students for 24 hours after signing up. Sign up to get it.",
+      "regular": "Regular price",
+      "webinar": "Discount for new students",
+      "cta": "Get my discount",
+      "includes": "What's included"
+    },
+    "reviews": {
+      "title": "What students say",
+      "placeholder": "Real student reviews will appear here."
+    },
+    "video": {
+      "title": "See how learning works",
+      "text": "A short video: lessons, practice and assignment checking."
+    },
+    "big": {
+      "a": "Simple. Clear.",
+      "b": "A little every day."
+    }
+  },
+  "Login": {
+    "title": "Sign in to my account",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "forgot": "Forgot your password?",
+    "error": "Could not sign in. Check your email and password.",
+    "throttled": "Too many attempts. Try again in 15 minutes.",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up"
+  },
+  "App": {
+    "nav": {
+      "courses": "My courses",
+      "search": "Search",
+      "profile": "Profile",
+      "admin": "Admin",
+      "logout": "Sign out",
+      "menu": "Menu",
+      "practice": "Practice",
+      "children": "Kids"
+    },
+    "home": {
+      "title": "My courses",
+      "empty": "You do not have any courses yet.",
+      "continue": "Continue",
+      "open": "Open",
+      "completed": "Course completed",
+      "progress": "Completed: {done} of {total}",
+      "greeting": "Hi, {name}!",
+      "greetingSub": "Let's pick up where you left off.",
+      "streak": "{n}-day streak",
+      "streakNone": "Study today to start a streak"
+    },
+    "course": {
+      "moduleProgress": "{done} of {total}",
+      "kind": {
+        "video": "Video",
+        "text": "Reading",
+        "quiz": "Quiz",
+        "assignment": "Assignment"
+      },
+      "noLessons": "There are no lessons in this module yet."
+    },
+    "lesson": {
+      "markDone": "Mark as completed",
+      "done": "Completed",
+      "unmark": "Remove mark",
+      "next": "Next lesson",
+      "prev": "Previous lesson",
+      "back": "Back to course",
+      "noVideo": "No video has been added yet",
+      "finished": "This is the last lesson of the course.",
+      "doneNext": "Done, next",
+      "doneBack": "Done, back to course",
+      "help": "Need help?"
+    },
+    "search": {
+      "title": "Search lessons",
+      "placeholder": "What are you looking for?",
+      "submit": "Search",
+      "empty": "Nothing found",
+      "results": "Found: {count}",
+      "minChars": "Enter at least 2 characters"
+    },
+    "profile": {
+      "title": "Profile",
+      "name": "Name",
+      "phone": "Phone",
+      "language": "Language",
+      "save": "Save",
+      "saved": "Saved",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password (at least 8 characters)",
+      "passwordChanged": "Password changed",
+      "passwordWrong": "The current password is incorrect",
+      "passwordShort": "The new password is too short"
+    },
+    "exam": {
+      "quizTitle": "Quiz",
+      "submit": "Submit answers",
+      "answerAll": "Answer all the questions",
+      "score": "Your score: {score}%",
+      "passed": "Quiz passed. The lesson is marked as completed.",
+      "failed": "Below the pass score ({pass}%). Try again.",
+      "retry": "Try again",
+      "noQuestions": "This quiz has no questions yet.",
+      "assignmentTitle": "Assignment",
+      "yourAnswer": "Your answer",
+      "send": "Submit for review",
+      "pending": "Submitted. Waiting for the teacher to review it.",
+      "reviewed": "Reviewed. Score: {score}%",
+      "feedback": "Teacher feedback",
+      "resubmit": "Send a new version",
+      "empty": "Write an answer",
+      "examNoManual": "This lesson counts after it is graded",
+      "checking": "Checking…",
+      "feedbackAi": "AI feedback",
+      "belowPass": "The lesson counts from {pass}%. Fix the mistakes and send a new version."
+    },
+    "certificate": {
+      "title": "Certificate",
+      "waiting": "Course completed. A teacher will issue your certificate.",
+      "get": "Open certificate"
+    }
+  },
+  "Admin": {
+    "nav": {
+      "dashboard": "Overview",
+      "courses": "Courses",
+      "students": "Students",
+      "audit": "Action log",
+      "cabinet": "Student view",
+      "logout": "Sign out",
+      "menu": "Admin menu",
+      "reviews": "Reviews",
+      "certificates": "Certificates",
+      "payments": "Payments",
+      "leads": "Leads and messages",
+      "progress": "Progress"
+    },
+    "role": {
+      "owner": "Owner",
+      "manager": "Manager",
+      "teacher": "Teacher",
+      "student": "Student"
+    },
+    "dash": {
+      "title": "Overview",
+      "students": "Students",
+      "enrollments": "Active enrollments",
+      "courses": "Courses",
+      "hello": "Signed in as: {role}",
+      "aiTitle": "AI usage",
+      "aiLine": "Today: {n} of {limit} requests, last 7 days: {week}",
+      "aiNone": "No requests today"
+    },
+    "field": {
+      "ru": "Русский",
+      "ky": "Кыргызча",
+      "en": "English",
+      "title": "Title",
+      "description": "Description",
+      "slug": "Slug (latin letters, e.g. english-basic)",
+      "required": "The Russian version is required"
+    },
+    "common": {
+      "save": "Save",
+      "saved": "Saved",
+      "delete": "Delete",
+      "add": "Add",
+      "open": "Open",
+      "back": "Back",
+      "error": "Could not save. Check the data and your permissions.",
+      "none": "Nothing here yet"
+    },
+    "courses": {
+      "title": "Courses",
+      "new": "New course",
+      "create": "Create course",
+      "published": "Published",
+      "draft": "Draft",
+      "publish": "Publish course",
+      "teachers": "Course teachers",
+      "addTeacher": "Assign teacher",
+      "modules": "Modules and lessons",
+      "addModule": "Add module",
+      "moduleTitle": "Module title",
+      "addLesson": "Add lesson",
+      "lessonTitle": "Lesson title",
+      "settings": "Basics",
+      "audience": "Who the course is for",
+      "aud": {
+        "all": "Everyone",
+        "kids": "Kids",
+        "teens": "Teens",
+        "adults": "Adults"
+      }
+    },
+    "lesson": {
+      "edit": "Lesson",
+      "kindLabel": "Lesson type",
+      "kinds": {
+        "video": "Video",
+        "text": "Reading",
+        "exam": "Exam"
+      },
+      "examLabel": "Exam type",
+      "exams": {
+        "quiz": "Quiz (graded automatically)",
+        "assignment": "Assignment (reviewed by a teacher)"
+      },
+      "provider": "Video source",
+      "videoRef": "Video ID",
+      "body": "Lesson text",
+      "prompt": "Assignment text",
+      "passScore": "Pass score, % (quiz)",
+      "noProvider": "No video",
+      "questions": "Quiz questions"
+    },
+    "students": {
+      "title": "Students",
+      "search": "Name or email",
+      "find": "Search",
+      "name": "Name",
+      "email": "Email",
+      "courses": "Courses",
+      "access": "Course access",
+      "grant": "Grant access",
+      "revoke": "Revoke access",
+      "pickCourse": "Choose a course",
+      "statusActive": "Active",
+      "statusRevoked": "Revoked",
+      "statusExpired": "Expired"
+    },
+    "audit": {
+      "title": "Action log",
+      "when": "When",
+      "who": "Who",
+      "action": "Action",
+      "object": "Object"
+    },
+    "quiz": {
+      "add": "Add question",
+      "prompt": "Question",
+      "options": "Answer options, one per line",
+      "optionsHint": "The number of lines must match across languages. Russian is required.",
+      "correct": "Number of the correct answer (from 1)",
+      "empty": "No questions yet"
+    },
+    "reviews": {
+      "title": "Work to review",
+      "empty": "Nothing is waiting for review",
+      "score": "Score, 0–100",
+      "feedback": "Comment for the student",
+      "submit": "Save review",
+      "passHint": "From 50 the lesson counts as passed",
+      "aiDraft": "AI draft (you set the final score)",
+      "aiButton": "Prepare AI draft"
+    },
+    "certs": {
+      "title": "Certificates",
+      "ready": "Ready to issue",
+      "issued": "Issued",
+      "issue": "Issue certificate",
+      "none": "No students have completed a course yet"
+    },
+    "payments": {
+      "title": "Payments",
+      "empty": "No payments yet",
+      "confirm": "Confirm manually",
+      "refund": "Refund",
+      "status": {
+        "pending": "Pending",
+        "paid": "Paid",
+        "refunded": "Refunded",
+        "failed": "Failed"
+      },
+      "buyer": "Buyer",
+      "amount": "Amount",
+      "method": "Method",
+      "date": "Date",
+      "statusLabel": "Status"
+    },
+    "leads": {
+      "title": "Leads",
+      "empty": "No leads yet",
+      "status": {
+        "registered": "Registered",
+        "joined_group": "In group",
+        "attended": "Started learning",
+        "purchased": "Purchased",
+        "lost": "Lost"
+      },
+      "source": "Source"
+    },
+    "messages": {
+      "title": "Message queue",
+      "empty": "No messages",
+      "queued": "Queued",
+      "sent": "Sent",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "ai": {
+      "draft": "Prepare AI draft",
+      "quizGen": "Generate AI questions from the lesson text (review them!)",
+      "quizNoText": "Add the lesson text in Russian first",
+      "hint": "AI hint",
+      "summary": "AI weekly summary",
+      "translate": "Translate empty languages from Russian (AI draft)",
+      "translateWarn": "Always have the AI's Kyrgyz translation checked by a person before students see it.",
+      "done": "Done"
+    },
+    "progress": {
+      "title": "Student progress",
+      "course": "Course",
+      "allCourses": "All courses",
+      "show": "Show",
+      "empty": "No students with access yet.",
+      "lessons": "Lessons: {done} of {total}",
+      "passed": "exams passed: {n}",
+      "failed": "not passed: {n}",
+      "pending": "awaiting review: {n}",
+      "last": "Last activity: {date}",
+      "never": "Has not started",
+      "back": "Back to list",
+      "notDone": "Not completed",
+      "quiz": "Quiz",
+      "assignment": "Written assignment",
+      "attempts": "attempts: {n}",
+      "waiting": "Awaiting review",
+      "pass": "passed",
+      "fail": "not passed",
+      "byAi": "reviewed by AI",
+      "byTeacher": "reviewed by teacher",
+      "feedback": "Feedback"
+    }
+  },
+  "Certificate": {
+    "heading": "Certificate of course completion",
+    "awarded": "Awarded to",
+    "course": "Course",
+    "date": "Date of issue",
+    "number": "Number",
+    "valid": "This certificate is genuine",
+    "notFound": "No certificate with this number was found",
+    "print": "Print",
+    "issuer": "Learning platform"
+  },
+  "Msg": {
+    "webinar_registered": "{name}, you're in! Your personal discount is valid until {when}. Offer: {group}",
+    "webinar_registered_subject": "Your personal discount",
+    "webinar_reminder": "{name}, your discount ends {when}. Offer: {group}",
+    "webinar_reminder_subject": "Your discount ends soon",
+    "payment_paid": "{name}, payment received and your course is open. Sign in: {link}. To set a password, open this link (valid for 1 hour): {setup}",
+    "payment_paid_subject": "Payment received, your course is open",
+    "password_reset": "Password reset link (valid for 1 hour): {link}",
+    "password_reset_subject": "Password reset",
+    "checkout_abandoned": "{name}, you did not finish paying. Return to checkout: {link}",
+    "checkout_abandoned_subject": "You did not finish your payment"
+  },
+  "Funnel": {
+    "webinar": {
+      "title": "Start speaking English for free",
+      "subtitle": "Sign up and we'll send your personal discount and a link to the level test on WhatsApp.",
+      "name": "Your name",
+      "phone": "Phone (WhatsApp)",
+      "email": "Email (optional)",
+      "consent": "I agree to data processing and to receive messages",
+      "termsLink": "Read the terms",
+      "submit": "Get my discount",
+      "error": "Check your name and phone",
+      "bullets": {
+        "b1": "Find your level in 5 minutes",
+        "b2": "Get a personal discount on courses",
+        "b3": "Practice with an AI conversation partner"
+      }
+    },
+    "thanks": {
+      "title": "You're in!",
+      "telegram": "Get reminders on Telegram",
+      "offer": "See the discounted offer",
+      "timer": "Your discount is active for:",
+      "test": "Take the level test",
+      "cabinet": "Open my account"
+    },
+    "offer": {
+      "title": "Choose a learning package",
+      "timer": "Discount ends in",
+      "expired": "The discount has ended, the regular price applies.",
+      "buy": "Buy",
+      "includes": "Includes",
+      "empty": "No offers yet",
+      "getDiscount": "Sign up and get a personal discount for 24 hours.",
+      "getDiscountCta": "Get my discount"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "name": "Name",
+      "email": "Email (your access is sent here)",
+      "phone": "Phone (WhatsApp)",
+      "method": "Payment method",
+      "terms": "I accept the terms of the offer",
+      "termsLink": "Read the terms",
+      "pay": "Proceed to payment",
+      "noMethods": "Payment is temporarily unavailable. Contact us and we will help.",
+      "error": "Could not place the order. Check your details.",
+      "total": "Total"
+    },
+    "method": {
+      "card": "Bank card",
+      "finik": "Finik",
+      "elsom": "ELSOM",
+      "kaspi": "Kaspi",
+      "other": "Other"
+    },
+    "pay": {
+      "title": "Your order",
+      "pending": "Waiting for payment",
+      "paid": "Payment received. Your course is open!",
+      "failed": "Payment failed",
+      "refunded": "Payment refunded",
+      "transfer": "Transfer {amount} to {to} ({method}). Put the code {code} in the comment. Access opens automatically after the transfer.",
+      "refresh": "Check payment",
+      "mock": "Test payment (development only)",
+      "enter": "Go to my account"
+    },
+    "upsell": {
+      "title": "One more step: advanced programs",
+      "text": "A special price for buyers of the main package only.",
+      "accept": "Add for {price}",
+      "skip": "No thanks, go to my account"
+    },
+    "terms": {
+      "title": "Terms of the offer",
+      "draft": "This is placeholder text. The client's lawyer must replace it before payments go live.",
+      "s1": "1. What you buy: access to the online courses of the chosen package on the platform.",
+      "s2": "2. Access opens once payment is confirmed and lasts for the period stated in the package.",
+      "s3": "3. Refunds: the seller sets the refund terms and states them here.",
+      "s4": "4. Personal data is used only to run the platform and to contact you."
+    }
+  },
+  "Auth": {
+    "google": "Continue with Google",
+    "googleError": "Couldn't sign in with Google. Try again or use your email.",
+    "staff": "This email belongs to a staff account. Please log in with your password.",
+    "or": "or"
+  },
+  "Ai": {
+    "label": "Answered by AI, it can make mistakes",
+    "mock": "Test mode: no AI key is connected",
+    "send": "Send",
+    "thinking": "Thinking…",
+    "err": {
+      "limit": "Today's limit is used up. Try again tomorrow.",
+      "error": "Could not get an answer. Try again.",
+      "unavailable": "The assistant is temporarily unavailable.",
+      "denied": "Not available for this lesson."
+    },
+    "sales": {
+      "title": "Questions about the packages? Ask the assistant",
+      "placeholder": "Which package suits me?"
+    },
+    "lesson": {
+      "title": "Lesson assistant",
+      "placeholder": "What is unclear in this lesson?"
+    },
+    "cards": {
+      "title": "Revision cards",
+      "make": "Make cards",
+      "hint": "Tap a card to see the answer"
+    },
+    "practice": {
+      "title": "English practice",
+      "intro": "Chat with the AI partner in English. It gently corrects mistakes.",
+      "placeholder": "Write in English, e.g. Hello!"
+    },
+    "plan": {
+      "title": "Plan for the week",
+      "make": "Make a plan",
+      "none": "Open a course first"
+    },
+    "level": {
+      "title": "Find out your English level",
+      "text": "Write 3–5 sentences about yourself in English. The AI will estimate your level and suggest where to start.",
+      "submit": "Find my level",
+      "result": "Your level: {level}",
+      "offer": "See the offer"
+    },
+    "admin": {
+      "draft": "Prepare AI draft",
+      "quizGen": "Generate AI questions from the lesson text (review them!)",
+      "quizNoText": "Add the lesson text in Russian first",
+      "hint": "AI hint",
+      "summary": "AI weekly summary",
+      "translate": "Translate empty languages from Russian (AI draft)",
+      "translateWarn": "Always have the AI's Kyrgyz translation checked by a person before students see it.",
+      "done": "Done"
+    }
+  },
+  "Nav": {
+    "how": "How it works",
+    "goals": "Goals",
+    "prices": "Pricing",
+    "faq": "FAQ",
+    "login": "Log in",
+    "signup": "Sign up",
+    "menu": "Menu"
+  },
+  "Register": {
+    "title": "Create your account",
+    "subtitle": "It's free. After signing up you get a personal discount on courses.",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone (WhatsApp)",
+    "password": "Password",
+    "hint": "At least 8 characters",
+    "consent": "I agree to data processing and receiving messages",
+    "terms": "terms",
+    "submit": "Sign up",
+    "have": "Already have an account?",
+    "login": "Log in",
+    "taken": "This email is already registered. Please log in.",
+    "invalid": "Check your name, email, phone and password (8+ characters).",
+    "throttled": "Too many attempts. Please try again later.",
+    "childTitle": "Sign up for your child",
+    "childSubtitle": "Create a parent account and add your child. The child's account opens from yours.",
+    "childBlock": "Child's details",
+    "childName": "Child's name",
+    "childAge": "Age",
+    "parentNote": "Next, enter your details: the parent pays and manages access.",
+    "parentName": "Your full name (parent)",
+    "forChild": "Signing up a child?",
+    "forChildText": "Special courses and a safe account for kids.",
+    "forMe": "Signing up for yourself?",
+    "forMeText": "Regular sign-up for adults.",
+    "ageGroup": {
+      "kids": "Child (under 12)",
+      "teens": "Teen (13–17)"
+    }
+  },
+  "Children": {
+    "title": "My children",
+    "intro": "Create a child's account and open it from your own. Your child has no email or password of their own, and payments and settings stay with you.",
+    "empty": "No one here yet. Add a child below.",
+    "welcome": "Done! Your child is added. Open their account or pick a course.",
+    "open": "Open their account",
+    "buy": "Choose a course",
+    "addTitle": "Add a child",
+    "childName": "Child's name",
+    "age": "Age",
+    "add": "Add",
+    "added": "Child added",
+    "invalid": "Check the child's name and age",
+    "limit": "Too many attempts or the profile limit is reached. Try later.",
+    "privacy": "We don't collect email, phone or surname from children. In a child's account the AI uses simple words, doesn't ask for personal details and only answers about English.",
+    "modeBanner": "Child's account: {name}",
+    "backToParent": "Back to parent",
+    "parentPassword": "Parent's password",
+    "confirm": "Confirm",
+    "wrongPassword": "Wrong password",
+    "buyingFor": "Course for your child: {name}",
+    "askParent": "Only a parent can buy courses. Ask an adult to open their account.",
+    "ageGroup": {
+      "kids": "Child (under 12)",
+      "teens": "Teen (13–17)"
+    }
+  }
+}

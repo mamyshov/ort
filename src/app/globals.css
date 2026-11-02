@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/*
+ * Фирменные цвета: кобальт (главный), солнечно-жёлтый (акцент, как на флаге Кыргызстана),
+ * чернильно-синий для текста. Серая шкала zinc переопределена в холодные синеватые тона,
+ * поэтому все существующие классы zinc автоматически получают новую палитру.
+ */
+:root {
+  --background: #fbf5ea;
+  --foreground: #17203f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Nunito подключён из пакета @fontsource-variable/nunito (латиница, кириллица, расширенная кириллица для Ң, Ү, Ө) */
+  --font-sans: "Nunito Variable", system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, serif;
+}
+
+@theme {
+  --color-brand: #2f5bff;
+  --color-brand-dark: #1e3fd1;
+  --color-brand-soft: #e8eeff;
+  --color-sun: #ffcb2e;
+  --color-sun-soft: #fff3c4;
+  --color-ink: #17203f;
+  --color-coral: #ff7a59;
+  --color-lilac: #b9a3f0;
+  --color-sky: #7cc4ec;
+  --color-mint: #8fd6b0;
+  --color-cream: #fbf5ea;
+
+  --color-zinc-50: #fbf5ea;
+  --color-zinc-100: #f5ecdb;
+  --color-zinc-200: #eadfc8;
+  --color-zinc-300: #d8c9ac;
+  --color-zinc-400: #a39577;
+  --color-zinc-500: #6e6450;
+  --color-zinc-600: #54493a;
+  --color-zinc-700: #3c3326;
+  --color-zinc-800: #281f15;
+  --color-zinc-900: #17203f;
+
+  --shadow-card: 0 1px 2px rgb(16 27 61 / 0.04), 0 8px 24px -8px rgb(47 91 255 / 0.16);
+  --shadow-pop: 0 4px 0 0 rgb(30 63 209);
+}
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }
+  h1, h2 { font-family: var(--font-serif); font-weight: 700; letter-spacing: -0.02em; }
+  ::selection { background: var(--color-sun); color: var(--color-ink); }
+  :focus-visible { outline: 3px solid var(--color-sun); outline-offset: 2px; border-radius: 0.5rem; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline-color: var(--color-brand); }
+  button, a[class*="bg-brand"] { transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease; }
+}
+
+/* Главная кнопка: объёмная, при нажатии «вдавливается» */
+.btn-primary {
+  background: var(--color-brand);
+  color: #fff;
+  font-weight: 800;
+  border-radius: 0.875rem;
+  box-shadow: var(--shadow-pop);
+}
+.btn-primary:hover { background: var(--color-brand-dark); }
+.btn-primary:active { transform: translateY(3px); box-shadow: 0 1px 0 0 rgb(30 63 209); }
+.btn-primary:disabled { opacity: 0.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

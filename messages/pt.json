@@ -1,0 +1,486 @@
+{
+  "Common": {
+    "appName": "Plataforma de aprendizagem"
+  },
+  "Language": {
+    "label": "Idioma"
+  },
+  "Home": {
+    "title": "Comece a falar inglês: pelo celular, no seu ritmo",
+    "subtitle": "Videoaulas curtas, prática de conversação com IA e provas com certificado. Tudo em uma só conta.",
+    "cta": "Entrar",
+    "webinar": "Começar grátis",
+    "badge": "Inglês conversacional online",
+    "levelCta": "Descubra seu nível",
+    "how": {
+      "title": "Como funciona o aprendizado",
+      "steps": [
+        {
+          "t": "Assista a aulas curtas",
+          "d": "Vídeos e materiais abrem no seu celular. Estude no seu ritmo, seu progresso fica salvo."
+        },
+        {
+          "t": "Converse com o parceiro de IA",
+          "d": "Escreva em inglês quando quiser. O parceiro corrige seus erros com delicadeza e explica."
+        },
+        {
+          "t": "Faça a prova e receba o certificado",
+          "d": "Os testes são corrigidos na hora e as tarefas escritas são revisadas por um professor. O certificado é verificado pelo número."
+        }
+      ]
+    },
+    "features": {
+      "title": "Tudo o que você precisa em uma só conta",
+      "items": [
+        {
+          "i": "video",
+          "t": "Videoaulas",
+          "d": "Aulas por módulos, busca nos materiais, confortáveis no celular."
+        },
+        {
+          "i": "chat",
+          "t": "Prática com IA",
+          "d": "Prática de conversação sem vergonha e sem fila. As respostas da IA são sempre identificadas."
+        },
+        {
+          "i": "cards",
+          "t": "Cartões de palavras",
+          "d": "As palavras de uma aula viram flashcards para revisão rápida."
+        },
+        {
+          "i": "plan",
+          "t": "Plano semanal",
+          "d": "Uma orientação sobre o que revisar e quando, para você não desistir na segunda semana."
+        },
+        {
+          "i": "exam",
+          "t": "Provas",
+          "d": "Testes com resultado imediato e tarefas revisadas por um professor de verdade."
+        },
+        {
+          "i": "cert",
+          "t": "Certificado",
+          "d": "Emitido por um professor. A autenticidade pode ser conferida no site pelo número."
+        }
+      ]
+    },
+    "level": {
+      "title": "Não sabe por onde começar?",
+      "text": "Um teste curto mostra seu nível e sugere o curso certo."
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "items": [
+        {
+          "q": "Preciso saber inglês para começar?",
+          "a": "Não. Faça o teste de nível e a plataforma sugere um curso."
+        },
+        {
+          "q": "Posso estudar pelo celular?",
+          "a": "Sim. A conta foi pensada primeiro para o celular: aulas, prática e testes funcionam no navegador do celular."
+        },
+        {
+          "q": "Em quais idiomas está a interface?",
+          "a": "Em oito idiomas, incluindo português, espanhol, turco, russo e inglês. Troque com um toque."
+        },
+        {
+          "q": "Como pago?",
+          "a": "Ao se inscrever você recebe uma oferta pessoal com desconto e pode pagar por transferência ou cartão. A forma de pagamento é escolhida no pedido."
+        },
+        {
+          "q": "Quem revisa os trabalhos e emite o certificado?",
+          "a": "Um professor. A IA pode preparar um rascunho de revisão, mas a nota e o certificado são sempre dados por uma pessoa."
+        }
+      ]
+    },
+    "final": {
+      "title": "Comece grátis",
+      "text": "Inscreva-se e enviaremos um desconto pessoal nos cursos."
+    },
+    "footer": {
+      "terms": "Termos da oferta",
+      "tagline": "Inglês pelo celular: videoaulas, prática com IA e certificado.",
+      "learn": "Aprender",
+      "account": "Conta",
+      "legal": "Legal",
+      "forgot": "Esqueceu a senha?",
+      "rights": "© {year} {name}. Todos os direitos reservados."
+    },
+    "guarantees": [
+      "Para todos os níveis",
+      "Prática com IA a qualquer hora",
+      "Certificado verificado pelo número"
+    ],
+    "goals": {
+      "title": "Para que você precisa de inglês?",
+      "cta": "Começar",
+      "items": [
+        {
+          "i": "chat",
+          "t": "Falar com fluência",
+          "d": "Prática de conversação para o dia a dia, viagens e papo."
+        },
+        {
+          "i": "work",
+          "t": "Para o trabalho",
+          "d": "Frases de negócios, e-mails e preparação para entrevistas."
+        },
+        {
+          "i": "exam",
+          "t": "Passar em uma prova",
+          "d": "Testes e tarefas com análise detalhada dos erros."
+        }
+      ],
+      "text": "Escolha o que importa para você. Vamos sugerir por onde começar."
+    },
+    "packages": {
+      "title": "Escolha um programa",
+      "text": "O desconto vale para novos alunos por 24 horas após a inscrição. Inscreva-se para recebê-lo.",
+      "regular": "Preço normal",
+      "webinar": "Desconto para novos alunos",
+      "cta": "Quero meu desconto",
+      "includes": "O que está incluído"
+    },
+    "reviews": {
+      "title": "O que dizem os alunos",
+      "placeholder": "Avaliações reais de alunos vão aparecer aqui."
+    },
+    "video": {
+      "title": "Veja como funciona o aprendizado",
+      "text": "Um vídeo curto: aulas, prática e correção de tarefas."
+    },
+    "big": {
+      "a": "Simples. Claro.",
+      "b": "Um pouco por dia."
+    }
+  },
+  "Login": {
+    "title": "Entrar na minha conta",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "forgot": "Esqueceu a senha?",
+    "error": "Não foi possível entrar. Verifique seu e-mail e sua senha.",
+    "throttled": "Muitas tentativas. Tente novamente em 15 minutos.",
+    "noAccount": "Não tem conta?",
+    "signup": "Cadastrar-se"
+  },
+  "Certificate": {
+    "heading": "Certificado de conclusão do curso",
+    "awarded": "Concedido a",
+    "course": "Curso",
+    "date": "Data de emissão",
+    "number": "Número",
+    "valid": "Este certificado é autêntico",
+    "notFound": "Nenhum certificado com este número foi encontrado",
+    "print": "Imprimir",
+    "issuer": "Plataforma de aprendizagem"
+  },
+  "Msg": {
+    "webinar_registered": "{name}, você está dentro! Seu desconto pessoal vale até {when}. Oferta: {group}",
+    "webinar_registered_subject": "Seu desconto pessoal",
+    "webinar_reminder": "{name}, seu desconto termina {when}. Oferta: {group}",
+    "webinar_reminder_subject": "Seu desconto termina em breve",
+    "payment_paid": "{name}, recebemos seu pagamento e seu curso está liberado. Entre aqui: {link}. Para definir uma senha, abra este link (válido por 1 hora): {setup}",
+    "payment_paid_subject": "Pagamento recebido, seu curso está liberado",
+    "password_reset": "Link para redefinir a senha (válido por 1 hora): {link}",
+    "password_reset_subject": "Redefinição de senha",
+    "checkout_abandoned": "{name}, você não concluiu o pagamento. Volte ao pedido: {link}",
+    "checkout_abandoned_subject": "Você não concluiu o pagamento"
+  },
+  "Auth": {
+    "google": "Continuar com o Google",
+    "googleError": "Não foi possível entrar com o Google. Tente de novo ou use seu e-mail.",
+    "staff": "Este e-mail pertence a uma conta de equipe. Entre com sua senha.",
+    "or": "ou"
+  },
+  "Funnel": {
+    "webinar": {
+      "title": "Comece a falar inglês de graça",
+      "subtitle": "Inscreva-se e enviaremos seu desconto pessoal e o link do teste de nível pelo WhatsApp.",
+      "name": "Seu nome",
+      "phone": "Telefone (WhatsApp)",
+      "email": "E-mail (opcional)",
+      "consent": "Concordo com o tratamento de dados e com o recebimento de mensagens",
+      "termsLink": "Ler os termos",
+      "submit": "Quero meu desconto",
+      "error": "Verifique seu nome e telefone",
+      "bullets": {
+        "b1": "Descubra seu nível em 5 minutos",
+        "b2": "Ganhe um desconto pessoal nos cursos",
+        "b3": "Pratique com um parceiro de conversa com IA"
+      }
+    },
+    "thanks": {
+      "title": "Você está dentro!",
+      "telegram": "Receber lembretes no Telegram",
+      "offer": "Ver a oferta com desconto",
+      "timer": "Seu desconto está ativo por:",
+      "test": "Fazer o teste de nível",
+      "cabinet": "Abrir minha conta"
+    },
+    "offer": {
+      "title": "Escolha um pacote de estudo",
+      "timer": "O desconto termina em",
+      "expired": "O desconto acabou, vale o preço normal.",
+      "buy": "Comprar",
+      "includes": "Inclui",
+      "empty": "Ainda não há ofertas",
+      "getDiscount": "Cadastre-se e ganhe um desconto pessoal por 24 horas.",
+      "getDiscountCta": "Quero meu desconto"
+    },
+    "checkout": {
+      "title": "Pedido",
+      "name": "Nome",
+      "email": "E-mail (enviamos seu acesso para cá)",
+      "phone": "Telefone (WhatsApp)",
+      "method": "Forma de pagamento",
+      "terms": "Aceito os termos da oferta",
+      "termsLink": "Ler os termos",
+      "pay": "Ir para o pagamento",
+      "noMethods": "O pagamento está indisponível por enquanto. Fale conosco e vamos ajudar.",
+      "error": "Não foi possível fazer o pedido. Verifique seus dados.",
+      "total": "Total"
+    },
+    "method": {
+      "card": "Cartão bancário",
+      "finik": "Finik",
+      "elsom": "ELSOM",
+      "kaspi": "Kaspi",
+      "other": "Outro"
+    },
+    "pay": {
+      "title": "Seu pedido",
+      "pending": "Aguardando pagamento",
+      "paid": "Pagamento recebido. Seu curso está liberado!",
+      "failed": "O pagamento falhou",
+      "refunded": "Pagamento reembolsado",
+      "transfer": "Transfira {amount} para {to} ({method}). Coloque o código {code} no comentário. O acesso é liberado automaticamente após a transferência.",
+      "refresh": "Verificar pagamento",
+      "mock": "Pagamento de teste (somente desenvolvimento)",
+      "enter": "Ir para minha conta"
+    },
+    "upsell": {
+      "title": "Mais um passo: programas avançados",
+      "text": "Um preço especial só para quem compra o pacote principal.",
+      "accept": "Adicionar por {price}",
+      "skip": "Não, obrigado, ir para minha conta"
+    }
+  },
+  "App": {
+    "nav": {
+      "courses": "Meus cursos",
+      "search": "Buscar",
+      "profile": "Perfil",
+      "admin": "Administração",
+      "logout": "Sair",
+      "menu": "Menu",
+      "practice": "Prática",
+      "children": "Crianças"
+    },
+    "home": {
+      "title": "Meus cursos",
+      "empty": "Você ainda não tem cursos.",
+      "continue": "Continuar",
+      "open": "Abrir",
+      "completed": "Curso concluído",
+      "progress": "Concluído: {done} de {total}",
+      "greeting": "Olá, {name}!",
+      "greetingSub": "Vamos continuar de onde você parou.",
+      "streak": "{n, plural, one {# dia seguido} other {# dias seguidos}}",
+      "streakNone": "Estude hoje para começar uma sequência"
+    },
+    "course": {
+      "moduleProgress": "{done} de {total}",
+      "kind": {
+        "video": "Vídeo",
+        "text": "Leitura",
+        "quiz": "Teste",
+        "assignment": "Tarefa"
+      },
+      "noLessons": "Ainda não há aulas neste módulo."
+    },
+    "lesson": {
+      "markDone": "Marcar como concluída",
+      "done": "Concluída",
+      "unmark": "Remover marcação",
+      "next": "Próxima aula",
+      "prev": "Aula anterior",
+      "back": "Voltar ao curso",
+      "noVideo": "Nenhum vídeo foi adicionado ainda",
+      "finished": "Esta é a última aula do curso.",
+      "doneNext": "Concluído, próxima",
+      "doneBack": "Concluído, voltar ao curso",
+      "help": "Precisa de ajuda?"
+    },
+    "search": {
+      "title": "Buscar aulas",
+      "placeholder": "O que você procura?",
+      "submit": "Buscar",
+      "empty": "Nada encontrado",
+      "results": "Encontrados: {count}",
+      "minChars": "Digite pelo menos 2 caracteres"
+    },
+    "profile": {
+      "title": "Perfil",
+      "name": "Nome",
+      "phone": "Telefone",
+      "language": "Idioma",
+      "save": "Salvar",
+      "saved": "Salvo",
+      "changePassword": "Alterar senha",
+      "currentPassword": "Senha atual",
+      "newPassword": "Nova senha (mínimo de 8 caracteres)",
+      "passwordChanged": "Senha alterada",
+      "passwordWrong": "A senha atual está incorreta",
+      "passwordShort": "A nova senha é muito curta"
+    },
+    "exam": {
+      "quizTitle": "Teste",
+      "submit": "Enviar respostas",
+      "answerAll": "Responda a todas as perguntas",
+      "score": "Sua pontuação: {score}%",
+      "passed": "Teste aprovado. A aula foi marcada como concluída.",
+      "failed": "Abaixo da nota mínima ({pass}%). Tente novamente.",
+      "retry": "Tentar novamente",
+      "noQuestions": "Este teste ainda não tem perguntas.",
+      "assignmentTitle": "Tarefa",
+      "yourAnswer": "Sua resposta",
+      "send": "Enviar para revisão",
+      "pending": "Enviado. Aguardando a revisão do professor.",
+      "reviewed": "Revisado. Pontuação: {score}%",
+      "feedback": "Comentários do professor",
+      "resubmit": "Enviar uma nova versão",
+      "empty": "Escreva uma resposta",
+      "examNoManual": "Esta aula conta depois de corrigida",
+      "checking": "Verificando…",
+      "feedbackAi": "Comentários da IA",
+      "belowPass": "A aula conta a partir de {pass}%. Corrija os erros e envie uma nova versão."
+    },
+    "certificate": {
+      "title": "Certificado",
+      "waiting": "Curso concluído. Um professor vai emitir seu certificado.",
+      "get": "Abrir certificado"
+    }
+  },
+  "Ai": {
+    "label": "Resposta da IA, pode conter erros",
+    "mock": "Modo de teste: nenhuma chave de IA conectada",
+    "send": "Enviar",
+    "thinking": "Pensando…",
+    "err": {
+      "limit": "O limite de hoje acabou. Tente novamente amanhã.",
+      "error": "Não foi possível obter uma resposta. Tente novamente.",
+      "unavailable": "O assistente está temporariamente indisponível.",
+      "denied": "Indisponível para esta aula."
+    },
+    "sales": {
+      "title": "Dúvidas sobre os pacotes? Pergunte ao assistente",
+      "placeholder": "Qual pacote combina comigo?"
+    },
+    "lesson": {
+      "title": "Assistente da aula",
+      "placeholder": "O que não ficou claro nesta aula?"
+    },
+    "cards": {
+      "title": "Cartões de revisão",
+      "make": "Criar cartões",
+      "hint": "Toque em um cartão para ver a resposta"
+    },
+    "practice": {
+      "title": "Prática de inglês",
+      "intro": "Converse em inglês com o parceiro de IA. Ele corrige seus erros com delicadeza.",
+      "placeholder": "Escreva em inglês, por exemplo: Hello!"
+    },
+    "plan": {
+      "title": "Plano da semana",
+      "make": "Criar um plano",
+      "none": "Abra um curso primeiro"
+    },
+    "level": {
+      "title": "Descubra seu nível de inglês",
+      "text": "Escreva de 3 a 5 frases sobre você em inglês. A IA estima seu nível e sugere por onde começar.",
+      "submit": "Descobrir meu nível",
+      "result": "Seu nível: {level}",
+      "offer": "Ver a oferta"
+    },
+    "admin": {
+      "draft": "Preparar rascunho com IA",
+      "quizGen": "Gerar perguntas com IA a partir do texto da aula (revise-as!)",
+      "quizNoText": "Adicione primeiro o texto da aula em russo",
+      "hint": "Dica da IA",
+      "summary": "Resumo semanal da IA",
+      "translate": "Traduzir os idiomas vazios a partir do russo (rascunho da IA)",
+      "translateWarn": "Sempre peça a uma pessoa para revisar a tradução da IA para o quirguiz antes que os alunos a vejam.",
+      "done": "Concluído"
+    }
+  },
+  "Nav": {
+    "how": "Como funciona",
+    "goals": "Objetivos",
+    "prices": "Preços",
+    "faq": "Perguntas",
+    "login": "Entrar",
+    "signup": "Cadastrar-se",
+    "menu": "Menu"
+  },
+  "Register": {
+    "title": "Crie sua conta",
+    "subtitle": "É grátis. Ao se cadastrar você ganha um desconto pessoal nos cursos.",
+    "name": "Nome completo",
+    "email": "E-mail",
+    "phone": "Telefone (WhatsApp)",
+    "password": "Senha",
+    "hint": "Pelo menos 8 caracteres",
+    "consent": "Concordo com o tratamento de dados e o recebimento de mensagens",
+    "terms": "termos",
+    "submit": "Cadastrar-me",
+    "have": "Já tem conta?",
+    "login": "Entrar",
+    "taken": "Este e-mail já está cadastrado. Faça login.",
+    "invalid": "Confira nome, e-mail, telefone e senha (8+ caracteres).",
+    "throttled": "Muitas tentativas. Tente mais tarde.",
+    "childTitle": "Cadastro para seu filho",
+    "childSubtitle": "Crie a conta do responsável e adicione seu filho. A conta da criança abre a partir da sua.",
+    "childBlock": "Dados da criança",
+    "childName": "Nome da criança",
+    "childAge": "Idade",
+    "parentNote": "Depois informe seus dados: o responsável paga e gerencia o acesso.",
+    "parentName": "Seu nome completo (responsável)",
+    "forChild": "Cadastrando uma criança?",
+    "forChildText": "Cursos especiais e uma conta segura para crianças.",
+    "forMe": "Cadastrando para você?",
+    "forMeText": "Cadastro comum para adultos.",
+    "ageGroup": {
+      "kids": "Criança (menos de 12)",
+      "teens": "Adolescente (13–17)"
+    }
+  },
+  "Children": {
+    "title": "Meus filhos",
+    "intro": "Crie a conta do seu filho e abra-a a partir da sua. A criança não tem e-mail nem senha próprios, e pagamentos e configurações ficam com você.",
+    "empty": "Ninguém ainda. Adicione seu filho abaixo.",
+    "welcome": "Pronto! Seu filho foi adicionado. Abra a conta dele ou escolha um curso.",
+    "open": "Abrir a conta",
+    "buy": "Escolher curso",
+    "addTitle": "Adicionar filho",
+    "childName": "Nome da criança",
+    "age": "Idade",
+    "add": "Adicionar",
+    "added": "Filho adicionado",
+    "invalid": "Confira o nome e a idade",
+    "limit": "Muitas tentativas ou limite de perfis atingido. Tente mais tarde.",
+    "privacy": "Não coletamos e-mail, telefone nem sobrenome de crianças. Na conta infantil, a IA usa palavras simples, não pede dados pessoais e só responde sobre inglês.",
+    "modeBanner": "Conta da criança: {name}",
+    "backToParent": "Voltar ao responsável",
+    "parentPassword": "Senha do responsável",
+    "confirm": "Confirmar",
+    "wrongPassword": "Senha incorreta",
+    "buyingFor": "Curso para seu filho: {name}",
+    "askParent": "Só um responsável pode comprar cursos. Peça a um adulto para abrir a conta dele.",
+    "ageGroup": {
+      "kids": "Criança (menos de 12)",
+      "teens": "Adolescente (13–17)"
+    }
+  }
+}
