@@ -10,7 +10,9 @@
 -- Типы
 ------------------------------------------------------------------------------
 create type user_role      as enum ('student', 'manager', 'owner');
-create type section_kind   as enum ('main', 'kyrgyz', 'subject');
+-- main: основной тест (темы: математика, аналогии, чтение, грамматика);
+-- kyrgyz / russian: тест по языку, 50 вопросов (по языку обучения в школе); subject: предметные
+create type section_kind   as enum ('main', 'kyrgyz', 'russian', 'subject');
 create type attempt_kind   as enum ('practice', 'mock');
 create type attempt_status as enum ('in_progress', 'finished');
 create type sub_status     as enum ('active', 'revoked');
@@ -31,6 +33,8 @@ create table profiles (
   full_name  text,
   phone      text,
   locale     text not null default 'ru' check (locale in ('ru', 'ky')),
+  -- Язык обучения в школе: от него зависит, какой тест по языку сдавать (кыргызский или русский)
+  school_language text check (school_language in ('ru', 'ky')),
   role       user_role not null default 'student',
   created_at timestamptz not null default now()
 );
