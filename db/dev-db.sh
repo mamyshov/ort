@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Локальная база PostgreSQL для разработки (нужны серверные программы postgresql-16).
 # Использование: db/dev-db.sh start | stop | reset | status
-# Строка подключения: postgres://app@127.0.0.1:54329/course_platform
+# Строка подключения: postgres://app@127.0.0.1:54329/ort_prep
 set -euo pipefail
 
 BIN=${PG_BIN:-/usr/lib/postgresql/16/bin}
-DATA=${PG_DATA:-/var/tmp/course-platform-pg}
+DATA=${PG_DATA:-/var/tmp/ort-prep-pg}
 PORT=${PG_PORT:-54329}
-DB=course_platform
+DB=ort_prep
 RUNAS=()
 if [ "$(id -u)" = "0" ]; then RUNAS=(su postgres -s /bin/bash -c); fi
 

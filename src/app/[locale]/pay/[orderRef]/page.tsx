@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { FbPixel } from "@/components/fb-pixel";
 import { btnCls, btnGhostCls } from "@/components/loc-fields";
 import { SiteShell } from "@/components/site-shell";
 import { loc } from "@/lib/content";
@@ -19,7 +18,6 @@ export default async function PayPage({ params }: PageProps<"/[locale]/pay/[orde
   const done = order.status === "paid";
   return (
     <SiteShell>
-      {done && !order.upsellOf && <FbPixel event="Purchase" value={order.amount} />}
       <h1 className="text-2xl font-extrabold">{t("title")}</h1>
       <div className="rounded-3xl border border-zinc-200 bg-white shadow-card p-5">
         <p className="font-medium">{order.packageTitle ? loc(order.packageTitle, locale) : ""} · ${order.amount}</p>

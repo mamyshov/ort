@@ -1,5 +1,5 @@
 {
-  "name": "course-platform",
+  "name": "ort-prep",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "db:stop": "db/dev-db.sh stop",
     "db:reset": "db/dev-db.sh reset",
     "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
-    "db:seed": "node --env-file=.env.local scripts/seed-demo.mjs",
+    "db:seed": "node --env-file=.env.local scripts/seed-ort.mjs",
     "owner": "node --env-file=.env.local scripts/create-owner.mjs"
   },
   "dependencies": {

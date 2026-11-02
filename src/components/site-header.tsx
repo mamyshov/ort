@@ -8,8 +8,8 @@ export async function SiteHeader({ maxWidth = "max-w-6xl" }: { maxWidth?: string
   const common = await getTranslations("Common");
   const t = await getTranslations("Nav");
   const links = [
-    { href: "/#how", label: t("how") },
     { href: "/#goals", label: t("goals") },
+    { href: "/#how", label: t("how") },
     { href: "/#prices", label: t("prices") },
     { href: "/#faq", label: t("faq") },
   ] as const;

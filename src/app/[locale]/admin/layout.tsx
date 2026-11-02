@@ -8,11 +8,11 @@ import { logoutAction } from "../login/actions";
 export default async function AdminLayout({ children, params }: LayoutProps<"/[locale]/admin">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const user = await requireRole(locale, ["owner", "manager", "teacher"]);
+  const user = await requireRole(locale, ["owner", "manager"]);
   const t = await getTranslations("Admin.nav");
   const common = await getTranslations("Common");
   const link = "shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-brand-soft hover:text-brand-dark";
-
+  const owner = user.role === "owner";
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50">
       <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white/90 backdrop-blur">
@@ -20,14 +20,14 @@ export default async function AdminLayout({ children, params }: LayoutProps<"/[l
           <Link href="/admin" className="mr-3"><Brand name={common("appName")} /></Link>
           <nav aria-label={t("menu")} className="order-3 flex w-full flex-wrap items-center gap-1">
             <Link href="/admin" className={link}>{t("dashboard")}</Link>
-            <Link href="/admin/courses" className={link}>{t("courses")}</Link>
-            <Link href="/admin/progress" className={link}>{t("progress")}</Link>
-            {user.role !== "teacher" && <Link href="/admin/students" className={link}>{t("students")}</Link>}
-            {user.role !== "teacher" && <Link href="/admin/payments" className={link}>{t("payments")}</Link>}
-            {user.role !== "teacher" && <Link href="/admin/leads" className={link}>{t("leads")}</Link>}
-            {user.role === "owner" && <Link href="/admin/audit" className={link}>{t("audit")}</Link>}
-            {user.role !== "manager" && <Link href="/admin/reviews" className={link}>{t("reviews")}</Link>}
-            {user.role !== "manager" && <Link href="/admin/certificates" className={link}>{t("certificates")}</Link>}
+            {owner && <Link href="/admin/questions" className={link}>{t("questions")}</Link>}
+            {owner && <Link href="/admin/import" className={link}>{t("import")}</Link>}
+            {owner && <Link href="/admin/sections" className={link}>{t("sections")}</Link>}
+            {owner && <Link href="/admin/mocks" className={link}>{t("mocks")}</Link>}
+            {owner && <Link href="/admin/packages" className={link}>{t("packages")}</Link>}
+            <Link href="/admin/students" className={link}>{t("students")}</Link>
+            <Link href="/admin/payments" className={link}>{t("payments")}</Link>
+            {owner && <Link href="/admin/audit" className={link}>{t("audit")}</Link>}
             <Link href="/app" className={link}>{t("cabinet")}</Link>
           </nav>
           <div className="ml-auto flex items-center gap-2">

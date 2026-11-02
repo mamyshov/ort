@@ -1,62 +1,43 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ProgressBar } from "@/components/progress-bar";
 import { loc } from "@/lib/content";
-import { getMyCourses, getStreak } from "@/lib/cabinet";
 import { requireUser } from "@/lib/guards";
+import { listSections, premiumUntil } from "@/lib/ort";
 
 export default async function CabinetHome({ params }: PageProps<"/[locale]/app">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const user = await requireUser(locale);
   const t = await getTranslations("App.home");
-  const courses = await getMyCourses(user.id);
-  const streak = await getStreak(user.id);
-
+  const [sections, until] = await Promise.all([listSections(), premiumUntil(user.id)]);
+  // Тест по языку школы показываем первым: кыргызоязычным — кыргызский, русскоязычным — русский
+  const mine = user.schoolLanguage === "ky" ? "kyrgyz" : user.schoolLanguage === "ru" ? "russian" : null;
+  const shown = sections.filter((s) => s.kind !== "kyrgyz" && s.kind !== "russian" || !mine || s.kind === mine);
+  const fmt = new Intl.DateTimeFormat(locale, { dateStyle: "long" });
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex flex-col gap-1 rounded-3xl bg-brand p-6 text-white shadow-card">
-        <h1 className="text-3xl font-black">{t("greeting", { name: user.fullName?.trim() || user.email.split("@")[0] })}</h1>
-        <p className="text-white/85">{t("greetingSub")}</p>
-        <p className="mt-3 w-fit rounded-full bg-white/15 px-4 py-1.5 text-sm font-extrabold">
-          {streak > 0 ? `🔥 ${t("streak", { n: streak })}` : t("streakNone")}
-        </p>
-      </section>
-      <h2 className="text-xl font-extrabold">{t("title")}</h2>
-      {courses.length === 0 && <p className="text-zinc-600">{t("empty")}</p>}
-      <ul className="flex flex-col gap-4">
-        {courses.map((c) => {
-          const finished = c.total > 0 && c.done >= c.total;
-          return (
-            <li key={c.id} className="rounded-3xl border border-zinc-200 bg-white shadow-card p-5">
-              <h3 className="text-lg font-extrabold">{loc(c.title, locale)}</h3>
-              <p className="mt-1 text-sm text-zinc-600">{loc(c.description, locale)}</p>
-              <div className="mt-4 flex flex-col gap-2">
-                <ProgressBar done={c.done} total={c.total} label={loc(c.title, locale)} />
-                <p className="text-sm text-zinc-600">
-                  {finished ? t("completed") : t("progress", { done: c.done, total: c.total })}
-                </p>
-              </div>
-              <div className="mt-4 flex gap-3">
-                {c.nextLessonId && !finished && (
-                  <Link
-                    href={`/app/lessons/${c.nextLessonId}`}
-                    className="rounded-xl btn-primary px-4 py-2 text-sm font-medium text-white"
-                  >
-                    {t("continue")}
-                  </Link>
-                )}
-                <Link
-                  href={`/app/courses/${c.slug}`}
-                  className="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-medium"
-                >
-                  {t("open")}
-                </Link>
-              </div>
+      <div>
+        <h1 className="text-2xl font-extrabold">{t("hello", { name: user.fullName ?? "" })}</h1>
+        <p className="text-zinc-600">{until ? t("premiumUntil", { date: fmt.format(until) }) : t("freePlan")}</p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Link href="/app/practice" className="rounded-3xl btn-primary p-5 text-white"><b className="text-lg">{t("practice")}</b><br /><span className="text-sm opacity-90">{t("practiceText")}</span></Link>
+        <Link href="/app/mock" className="rounded-3xl border-2 border-brand bg-white p-5"><b className="text-lg">{t("mock")}</b><br /><span className="text-sm text-zinc-600">{t("mockText")}</span></Link>
+        <Link href="/app/history" className="rounded-3xl border-2 border-zinc-200 bg-white p-5"><b className="text-lg">{t("history")}</b><br /><span className="text-sm text-zinc-600">{t("historyText")}</span></Link>
+      </div>
+      <section className="flex flex-col gap-3">
+        <h2 className="text-lg font-extrabold">{t("sections")}</h2>
+        {shown.length === 0 && <p className="text-zinc-600">{t("noSections")}</p>}
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {shown.map((s) => (
+            <li key={s.id} className="rounded-2xl border border-zinc-200 bg-white p-4">
+              <b>{loc(s.title, locale)}</b>
+              <p className="text-sm text-zinc-500">{t("questions", { n: s.total })}</p>
+              {s.topics.length > 0 && <p className="mt-1 text-xs text-zinc-500">{s.topics.map((x) => loc(x.title, locale)).join(" · ")}</p>}
             </li>
-          );
-        })}
-      </ul>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }

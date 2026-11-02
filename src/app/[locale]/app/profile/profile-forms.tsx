@@ -8,7 +8,7 @@ import { changePasswordAction, saveProfileAction, type ProfileState } from "./ac
 const input = "rounded-lg border border-zinc-300 px-3 py-2 text-base";
 const submit = "self-start rounded-xl btn-primary px-5 py-2 text-sm font-medium text-white disabled:opacity-60";
 
-export function ProfileForms(props: { name: string; phone: string; locale: string }) {
+export function ProfileForms(props: { name: string; phone: string; locale: string; school: string }) {
   const t = useTranslations("App.profile");
   const [s1, a1, p1] = useActionState<ProfileState, FormData>(saveProfileAction, null);
   const [s2, a2, p2] = useActionState<ProfileState, FormData>(changePasswordAction, null);
@@ -30,6 +30,14 @@ export function ProfileForms(props: { name: string; phone: string; locale: strin
             {UI_LOCALES.map((x) => (
               <option key={x} value={x}>{NATIVE_NAMES[x]}</option>
             ))}
+          </select>
+        </label>
+        <label className="flex flex-col gap-1 text-sm">
+          {t("school")}
+          <select name="school" defaultValue={props.school} className={input}>
+            <option value="">—</option>
+            <option value="ru">{t("schoolRu")}</option>
+            <option value="ky">{t("schoolKy")}</option>
           </select>
         </label>
         <button type="submit" disabled={p1} className={submit}>{t("save")}</button>

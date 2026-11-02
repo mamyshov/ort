@@ -15,9 +15,11 @@ export async function saveProfileAction(_: ProfileState, fd: FormData): Promise<
   const name = String(fd.get("name") ?? "").trim().slice(0, 120) || null;
   const phone = String(fd.get("phone") ?? "").trim().slice(0, 40) || null;
   const locale = String(fd.get("locale") ?? "");
+  const school = String(fd.get("school") ?? "");
   const lang = LOCALES.includes(locale) ? locale : user.locale;
   await withUser(user.id, (tx) =>
-    tx`update profiles set full_name = ${name}, phone = ${phone}, locale = ${lang} where id = ${user.id}`,
+    tx`update profiles set full_name = ${name}, phone = ${phone}, locale = ${lang},
+        school_language = ${school === "ru" || school === "ky" ? school : null} where id = ${user.id}`,
   );
   revalidatePath("/", "layout");
   return { ok: "saved" };

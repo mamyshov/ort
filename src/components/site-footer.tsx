@@ -6,7 +6,6 @@ export async function SiteFooter() {
   const common = await getTranslations("Common");
   const t = await getTranslations("Home.footer");
   const n = await getTranslations("Nav");
-  const h = await getTranslations("Home");
   const col = "flex flex-col gap-2 text-sm";
   const head = "font-extrabold text-white";
   const a = "text-white/70 hover:text-sun";
@@ -22,7 +21,6 @@ export async function SiteFooter() {
           <Link href="/#how" className={a}>{n("how")}</Link>
           <Link href="/#goals" className={a}>{n("goals")}</Link>
           <Link href="/#prices" className={a}>{n("prices")}</Link>
-          <Link href="/level-test" className={a}>{h("levelCta")}</Link>
         </nav>
         <nav className={col} aria-label={t("account")}>
           <span className={head}>{t("account")}</span>

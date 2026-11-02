@@ -4,7 +4,7 @@ import { getLocale } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
 import { createPasswordReset } from "@/lib/auth";
 import { tooMany } from "@/lib/ratelimit";
-import { enqueue, processQueue, siteUrl } from "@/lib/messaging";
+import { sendMail, siteUrl } from "@/lib/mail";
 
 /** Ответ одинаков, есть такая почта или нет: так нельзя проверить, кто зарегистрирован. */
 export async function forgotAction(fd: FormData) {
@@ -13,11 +13,8 @@ export async function forgotAction(fd: FormData) {
   const email = String(fd.get("email") ?? "").trim().toLowerCase().slice(0, 200);
   const r = email ? await createPasswordReset(email) : null;
   if (r) {
-    await enqueue({
-      channel: "email", to: email, template: "password_reset", locale, userId: r.userId,
-      params: { link: `${siteUrl()}/${locale}/reset?token=${r.token}` },
-    });
-    await processQueue(5).catch(() => {});
+    const link = `${siteUrl()}/${locale}/reset?token=${r.token}`;
+    await sendMail(email, "ORT Prep", locale === "ky" ? `Сырсөздү калыбына келтирүү: ${link}` : `Сброс пароля: ${link}`).catch(() => {});
   }
   return redirect({ href: "/forgot?sent=1", locale });
 }

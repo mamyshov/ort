@@ -14,14 +14,8 @@ export default async function ProfilePage({ params }: PageProps<"/[locale]/app/p
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-2xl font-extrabold">{t("title")}</h1>
-      {user.guardianId ? (
-        <p className="text-lg font-bold">{user.fullName}</p>
-      ) : (
-        <>
-          <p className="text-sm text-zinc-600">{user.email}</p>
-          <ProfileForms name={user.fullName ?? ""} phone={p?.phone ?? ""} locale={user.locale} />
-        </>
-      )}
+      <p className="text-sm text-zinc-600">{user.email}</p>
+      <ProfileForms name={user.fullName ?? ""} phone={p?.phone ?? ""} locale={user.locale} school={user.schoolLanguage ?? ""} />
     </div>
   );
 }

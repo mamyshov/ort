@@ -100,6 +100,8 @@ create table questions (
   difficulty   smallint not null default 2 check (difficulty between 1 and 3),
   is_free      boolean not null default false,
   is_published boolean not null default false,
+  -- Отпечаток текста вопроса и вариантов: один и тот же вопрос второй раз добавить нельзя
+  fingerprint  text not null unique,
   created_at   timestamptz not null default now()
 );
 create index on questions (section_id, topic_id);
@@ -111,6 +113,19 @@ create table question_keys (
   correct_option text not null,
   explanation    jsonb not null default '{}' check (jsonb_typeof(explanation) = 'object')
 );
+
+-- Вопрос без правильного ответа опубликовать нельзя
+create function questions_require_key() returns trigger
+language plpgsql as $$
+begin
+  if new.is_published and not exists (select 1 from question_keys where question_id = new.id) then
+    raise exception 'Нельзя опубликовать вопрос без правильного ответа';
+  end if;
+  return new;
+end;
+$$;
+create trigger questions_require_key before insert or update on questions
+  for each row execute function questions_require_key();
 
 create table mock_tests (
   id           uuid primary key default gen_random_uuid(),

@@ -16,5 +16,5 @@ if (process.env.DEMO_MODE === "1") {
   const sql = postgres(process.env.DATABASE_URL, { max: 1, onnotice: () => {} });
   const [{ n }] = await sql`select count(*)::int as n from profiles`;
   await sql.end();
-  if (n === 0) run("scripts/seed-demo.mjs");
+  if (n === 0) run("scripts/seed-ort.mjs");
 }

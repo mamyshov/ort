@@ -5,9 +5,9 @@ import { Link, usePathname } from "@/i18n/navigation";
 const icons: Record<string, React.ReactNode> = {
   courses: <><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H20v14H5.5A1.5 1.5 0 0 0 4 19.5z" /><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3" /></>,
   practice: <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" />,
-  search: <><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></>,
+  mock: <><circle cx="12" cy="13" r="7" /><path d="M12 9v4l2.5 2M9.5 3h5" /></>,
+  history: <path d="M5 20V10M12 20V4M19 20v-7" />,
   profile: <><circle cx="12" cy="8.5" r="4" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></>,
-  children: <><circle cx="9" cy="8.5" r="3.2" /><circle cx="17" cy="10" r="2.4" /><path d="M3 20a6 6 0 0 1 12 0M14.5 20a4.5 4.5 0 0 1 6.5-4" /></>,
   admin: <><circle cx="12" cy="12" r="3" /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" /></>,
 };
 
@@ -20,7 +20,7 @@ export function BottomNav({ items, label }: { items: NavItem[]; label: string })
     <nav aria-label={label} className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
       <ul className="mx-auto flex max-w-md justify-around">
         {items.map((it) => {
-          const active = it.href === "/app" ? path === "/app" || path.startsWith("/app/courses") || path.startsWith("/app/lessons") : path.startsWith(it.href);
+          const active = it.href === "/app" ? path === "/app" : path.startsWith(it.href);
           return (
             <li key={it.key} className="flex-1">
               <Link href={it.href} aria-current={active ? "page" : undefined}

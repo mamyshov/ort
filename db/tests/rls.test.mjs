@@ -19,11 +19,12 @@ await db.exec(`
   insert into sections (id, slug, kind, title, is_published) values
     ('${id(10)}','math','main','{"ru":"Математика"}',true),
     ('${id(11)}','draft','subject','{"ru":"Черновик"}',false);
-  insert into questions (id, section_id, prompt, options, is_free, is_published) values
-    ('${id(20)}','${id(10)}','{"ru":"free q"}','[]',true,true),
-    ('${id(21)}','${id(10)}','{"ru":"paid q"}','[]',false,true),
-    ('${id(22)}','${id(10)}','{"ru":"unpublished"}','[]',true,false);
+  insert into questions (id, section_id, prompt, options, is_free, is_published, fingerprint) values
+    ('${id(20)}','${id(10)}','{"ru":"free q"}','[]',true,false,'f1'),
+    ('${id(21)}','${id(10)}','{"ru":"paid q"}','[]',false,false,'f2'),
+    ('${id(22)}','${id(10)}','{"ru":"unpublished"}','[]',true,false,'f3');
   insert into question_keys (question_id, correct_option) values ('${id(20)}','a'), ('${id(21)}','b');
+  update questions set is_published = true where id in ('${id(20)}','${id(21)}');
   insert into packages (id, slug, title, price_usd, access_days) values ('${id(40)}','premium','{"ru":"x"}',9,90);
   insert into subscriptions (user_id, package_id, expires_at) values ('${U.paid}','${id(40)}', now() + interval '30 days');
   insert into attempts (id, user_id, kind, question_ids) values
@@ -61,8 +62,10 @@ await expectCount("менеджер видит только бесплатные
 await expectCount("ученик не видит правильные ответы", "paid", "select 1 from question_keys", 0);
 await expectCount("менеджер не видит правильные ответы", "manager", "select 1 from question_keys", 0);
 await expectCount("владелец видит правильные ответы", "owner", "select 1 from question_keys", 2);
-await expectError("ученик не может добавить вопрос", "paid", `insert into questions (section_id, prompt, options) values ('${id(10)}','{"ru":"x"}','[]')`);
-await expectError("менеджер не может добавить вопрос", "manager", `insert into questions (section_id, prompt, options) values ('${id(10)}','{"ru":"x"}','[]')`);
+await expectError("ученик не может добавить вопрос", "paid", `insert into questions (section_id, prompt, options, fingerprint) values ('${id(10)}','{"ru":"x"}','[]','fx')`);
+await expectError("менеджер не может добавить вопрос", "manager", `insert into questions (section_id, prompt, options, fingerprint) values ('${id(10)}','{"ru":"x"}','[]','fx')`);
+await expectError("нельзя опубликовать вопрос без правильного ответа", "owner", `update questions set is_published = true where id='${id(22)}'`);
+await expectError("одинаковый вопрос второй раз добавить нельзя", "owner", `insert into questions (section_id, prompt, options, fingerprint) values ('${id(10)}','{"ru":"x"}','[]','f1')`);
 await expectCount("гость не видит вопросы", "none", "select 1 from questions", 0);
 await expectCount("ученик видит опубликованный раздел", "free", "select 1 from sections", 1);
 await expectCount("владелец видит все разделы", "owner", "select 1 from sections", 2);
