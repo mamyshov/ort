@@ -21,23 +21,35 @@ export type ImportItem = {
 
 const LATIN_TO_CYR: Record<string, string> = { a: "а", b: "в", c: "с", e: "е", h: "н", k: "к", m: "м", o: "о", p: "р", t: "т", x: "х", y: "у" };
 
-/** Приводит текст к виду, в котором одинаковые вопросы совпадают, даже если отличаются знаки и пробелы. */
-export function normalizeText(s: string): string {
-  return s.toLowerCase()
-    .replace(/^\s*\(?[a-zа-яөүң]\)\s*/iu, "")       // «(А) » в начале варианта
-    .replace(/[\p{P}\p{S}\s]+/gu, "")                  // знаки, кавычки, звёздочки, пробелы
-    .replace(/[a-z]/g, (c) => LATIN_TO_CYR[c] ?? c);
-}
+const unify = (s: string) => s.toLowerCase()
+  .replace(/^\s*\(?[a-zа-яөүң]\)\s*/iu, "")        // «(А) » в начале варианта
+  .replace(/[«»„“”"]/g, '"').replace(/[‐‑–—−]/g, "-")  // разные кавычки и тире считаем одинаковыми
+  .replace(/[a-z]/g, (c) => LATIN_TO_CYR[c] ?? c)    // латинские буквы-двойники в кириллицу
+  .replace(/\s+/g, " ").trim();
+
+/**
+ * Строгий вид текста для поиска точных повторов: регистр, пробелы, тип кавычек и тире не важны,
+ * а знаки препинания, дефисы и звёздочки ВАЖНЫ. В вопросах по орфографии и пунктуации варианты
+ * различаются именно ими («жан-жаныбар» и «жан жаныбар» — разные ответы).
+ */
+export const normalizeText = (s: string): string => unify(s).replace(/\s*([,.;:!?()-])\s*/g, "$1");
+
+/** Грубый вид без знаков: по нему находим похожие вопросы, которые стоит проверить глазами. */
+export const looseText = (s: string): string => unify(s).replace(/[\p{P}\p{S}\s]+/gu, "");
 
 const pickText = (v: Localized | string | null | undefined, lang: "ru" | "ky"): Localized =>
   !v ? {} : typeof v === "string" ? { [lang]: v.trim() } : Object.fromEntries(Object.entries(v).filter(([, t]) => t?.trim()).map(([k, t]) => [k, t!.trim()]));
 
 const firstText = (v: Localized) => v.ky || v.ru || Object.values(v)[0] || "";
 
-export function fingerprint(prompt: Localized, options: Localized[], passage?: Localized | null): string {
-  const opts = options.map((o) => normalizeText(firstText(o))).sort();
-  return createHash("sha256").update([normalizeText(firstText(passage ?? {})), normalizeText(firstText(prompt)), ...opts].join("|")).digest("hex");
+const sha = (parts: string[]) => createHash("sha256").update(parts.join("|")).digest("hex");
+
+function fingerprints(prompt: Localized, options: Localized[], passage?: Localized | null) {
+  const mk = (n: (s: string) => string) => sha([n(firstText(passage ?? {})), n(firstText(prompt)), ...options.map((o) => n(firstText(o))).sort()]);
+  return { strict: mk(normalizeText), loose: mk(looseText) };
 }
+
+export const fingerprint = (prompt: Localized, options: Localized[], passage?: Localized | null) => fingerprints(prompt, options, passage);
 
 const OPTION_IDS = ["a", "b", "c", "d", "e", "f"];
 const LETTERS: Record<string, string> = { а: "a", б: "b", в: "c", г: "d", д: "e", a: "a", b: "b", c: "c", d: "d", e: "e", f: "f" };
@@ -52,17 +64,21 @@ function resolveCorrect(c: ImportItem["correct"], n: number): string | null {
 export type ImportReport = {
   added: number; published: number; drafts: number;
   duplicates: { index: number; prompt: string }[];
+  /** Загружены, но очень похожи на уже имеющиеся (отличаются знаками): проверьте вручную */
+  similar: { index: number; prompt: string }[];
   errors: { index: number; message: string }[];
 };
 
 /** Загрузка пачки вопросов. Повторы (по тексту вопроса и вариантов) пропускаются. Только владелец: проверяет база. */
 export async function importQuestions(staffId: string, items: ImportItem[], opts: { dryRun?: boolean } = {}): Promise<ImportReport> {
-  const report: ImportReport = { added: 0, published: 0, drafts: 0, duplicates: [], errors: [] };
+  const report: ImportReport = { added: 0, published: 0, drafts: 0, duplicates: [], similar: [], errors: [] };
   await withUser(staffId, async (tx) => {
     const sections = await tx<{ id: string; slug: string }[]>`select id, slug from sections`;
     const seenInBatch = new Set<string>();
+    const looseInBatch = new Set<string>();
     for (const [index, it] of items.entries()) {
       try {
+        await tx`savepoint item`;
         const lang = it.lang ?? "ru";
         const section = sections.find((s) => s.slug === it.section);
         if (!section) { report.errors.push({ index, message: `нет раздела «${it.section}»` }); continue; }
@@ -72,11 +88,14 @@ export async function importQuestions(staffId: string, items: ImportItem[], opts
           report.errors.push({ index, message: "нужен текст вопроса и от 2 до 6 непустых вариантов" }); continue;
         }
         const passage = it.passage ? pickText(it.passage, lang) : null;
-        const fp = fingerprint(prompt, options, passage);
+        const { strict: fp, loose } = fingerprint(prompt, options, passage);
         if (seenInBatch.has(fp)) { report.duplicates.push({ index, prompt: firstText(prompt) }); continue; }
         seenInBatch.add(fp);
         const [dup] = await tx`select 1 from questions where fingerprint = ${fp}`;
         if (dup) { report.duplicates.push({ index, prompt: firstText(prompt) }); continue; }
+        const [sim] = await tx`select 1 from questions where loose_fp = ${loose}`;
+        if (sim || looseInBatch.has(loose)) report.similar.push({ index, prompt: firstText(prompt) });
+        looseInBatch.add(loose);
         const correct = resolveCorrect(it.correct, options.length);
         if (it.correct !== undefined && it.correct !== null && it.correct !== "" && !correct) {
           report.errors.push({ index, message: "правильный ответ не соответствует вариантам" }); continue;
@@ -95,17 +114,19 @@ export async function importQuestions(staffId: string, items: ImportItem[], opts
               (select coalesce(max(position), 0) + 1 from topics where section_id = ${section.id})) returning id`)[0].id;
         }
         const [q] = await tx<{ id: string }[]>`
-          insert into questions (section_id, topic_id, passage, prompt, options, difficulty, is_free, is_published, fingerprint)
+          insert into questions (section_id, topic_id, passage, prompt, options, difficulty, is_free, is_published, fingerprint, loose_fp)
           values (${section.id}, ${topicId}, ${passage ? tx.json(passage) : null}, ${tx.json(prompt)},
                   ${tx.json(options.map((text, i) => ({ id: OPTION_IDS[i], text })))},
-                  ${it.difficulty ?? 2}, ${it.free ?? false}, false, ${fp})
+                  ${it.difficulty ?? 2}, ${it.free ?? false}, false, ${fp}, ${loose})
           returning id`;
         if (correct) {
           await tx`insert into question_keys (question_id, correct_option, explanation)
                    values (${q.id}, ${correct}, ${tx.json(pickText(it.explanation, lang))})`;
           await tx`update questions set is_published = true where id = ${q.id}`;
         }
+        await tx`release savepoint item`;
       } catch (e) {
+        await tx`rollback to savepoint item`.catch(() => {});
         report.errors.push({ index, message: e instanceof Error ? e.message : "ошибка" });
       }
     }

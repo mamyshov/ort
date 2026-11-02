@@ -41,8 +41,8 @@ for (const [q, opts, correct, free] of demo) {
   const prompt = { ru: `[Демо] ${q}` };
   const options = opts.map((t, i) => ({ id: "abcd"[i], text: { ru: t } }));
   const fp = createHash("sha256").update([norm(prompt.ru), ...options.map((o) => norm(o.text.ru)).sort()].join("|")).digest("hex");
-  const [row] = await sql`insert into questions (section_id, topic_id, prompt, options, is_free, fingerprint)
-    values (${main.id}, ${topic.id}, ${sql.json(prompt)}, ${sql.json(options)}, ${free}, ${fp}) on conflict (fingerprint) do nothing returning id`;
+  const [row] = await sql`insert into questions (section_id, topic_id, prompt, options, is_free, fingerprint, loose_fp)
+    values (${main.id}, ${topic.id}, ${sql.json(prompt)}, ${sql.json(options)}, ${free}, ${fp}, ${fp}) on conflict (fingerprint) do nothing returning id`;
   if (!row) continue;
   await sql`insert into question_keys (question_id, correct_option, explanation) values (${row.id}, ${correct}, ${sql.json({ ru: "Демонстрационный вопрос." })})`;
   await sql`update questions set is_published = true where id = ${row.id}`;

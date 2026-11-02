@@ -102,9 +102,12 @@ create table questions (
   is_published boolean not null default false,
   -- Отпечаток текста вопроса и вариантов: один и тот же вопрос второй раз добавить нельзя
   fingerprint  text not null unique,
+  -- Грубый отпечаток без знаков препинания: по нему ищутся ПОХОЖИЕ вопросы (на проверку человеку)
+  loose_fp     text not null default '',
   created_at   timestamptz not null default now()
 );
 create index on questions (section_id, topic_id);
+create index on questions (loose_fp);
 
 -- Правильный ответ и разбор лежат отдельно: ученик эту таблицу прочитать не может.
 -- Сервер отдаёт разбор только после ответа.

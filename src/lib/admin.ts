@@ -95,7 +95,7 @@ export type QuestionInput = {
 /** Сохраняет вопрос и ключ. Публикуется только при наличии правильного ответа. Возвращает id или причину отказа. */
 export async function saveQuestion(staffId: string, i: QuestionInput): Promise<{ id: string } | { error: "duplicate" | "invalid" }> {
   if (i.options.length < 2 || i.options.length > 6) return { error: "invalid" };
-  const fp = fingerprint(i.prompt, i.options.map((o) => o.text), i.passage);
+  const { strict: fp, loose } = fingerprint(i.prompt, i.options.map((o) => o.text), i.passage);
   try {
     return await withUser(staffId, async (tx) => {
       const [dup] = await tx`select 1 from questions where fingerprint = ${fp} and id is distinct from ${i.id ?? null}`;
@@ -105,11 +105,11 @@ export async function saveQuestion(staffId: string, i: QuestionInput): Promise<{
       let id = i.id;
       if (id) {
         await tx`update questions set section_id = ${base[0]}, topic_id = ${base[1]}, passage = ${base[2]}, prompt = ${base[3]},
-                 options = ${base[4]}, difficulty = ${base[5]}, is_free = ${base[6]}, is_published = false, fingerprint = ${fp} where id = ${id}`;
+                 options = ${base[4]}, difficulty = ${base[5]}, is_free = ${base[6]}, is_published = false, fingerprint = ${fp}, loose_fp = ${loose} where id = ${id}`;
       } else {
         [{ id }] = await tx<{ id: string }[]>`
-          insert into questions (section_id, topic_id, passage, prompt, options, difficulty, is_free, is_published, fingerprint)
-          values (${base[0]}, ${base[1]}, ${base[2]}, ${base[3]}, ${base[4]}, ${base[5]}, ${base[6]}, false, ${fp}) returning id`;
+          insert into questions (section_id, topic_id, passage, prompt, options, difficulty, is_free, is_published, fingerprint, loose_fp)
+          values (${base[0]}, ${base[1]}, ${base[2]}, ${base[3]}, ${base[4]}, ${base[5]}, ${base[6]}, false, ${fp}, ${loose}) returning id`;
       }
       if (i.correct) {
         await tx`insert into question_keys (question_id, correct_option, explanation) values (${id!}, ${i.correct}, ${tx.json(i.explanation as never)})

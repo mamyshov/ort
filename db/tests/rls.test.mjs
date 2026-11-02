@@ -17,8 +17,8 @@ await db.exec(`
   update profiles set role='owner'   where id='${U.owner}';
   update profiles set role='manager' where id='${U.manager}';
   insert into sections (id, slug, kind, title, is_published) values
-    ('${id(10)}','math','main','{"ru":"Математика"}',true),
-    ('${id(11)}','draft','subject','{"ru":"Черновик"}',false);
+    ('${id(10)}','t-math','main','{"ru":"Математика"}',true),
+    ('${id(11)}','t-draft','subject','{"ru":"Черновик"}',false);
   insert into questions (id, section_id, prompt, options, is_free, is_published, fingerprint) values
     ('${id(20)}','${id(10)}','{"ru":"free q"}','[]',true,false,'f1'),
     ('${id(21)}','${id(10)}','{"ru":"paid q"}','[]',false,false,'f2'),
@@ -67,8 +67,8 @@ await expectError("менеджер не может добавить вопро�
 await expectError("нельзя опубликовать вопрос без правильного ответа", "owner", `update questions set is_published = true where id='${id(22)}'`);
 await expectError("одинаковый вопрос второй раз добавить нельзя", "owner", `insert into questions (section_id, prompt, options, fingerprint) values ('${id(10)}','{"ru":"x"}','[]','f1')`);
 await expectCount("гость не видит вопросы", "none", "select 1 from questions", 0);
-await expectCount("ученик видит опубликованный раздел", "free", "select 1 from sections", 1);
-await expectCount("владелец видит все разделы", "owner", "select 1 from sections", 2);
+await expectCount("ученик видит только опубликованные разделы", "free", "select 1 from sections where slug = 't-draft'", 0);
+await expectCount("владелец видит и неопубликованные разделы", "owner", "select 1 from sections where slug = 't-draft'", 1);
 await expectError("ученик не может сделать себя владельцем", "free", `update profiles set role='owner' where id='${U.free}'`);
 await expectError("ученик не может записать попытку", "free", `insert into attempts (user_id, kind, question_ids, correct, total) values ('${U.free}','practice','[]',10,10)`);
 await expectError("ученик не может менять свои баллы", "free", `update attempts set correct=100 where user_id='${U.free}'`);

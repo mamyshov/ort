@@ -1,20 +1,24 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useTranslations } from "next-intl";
 import { importAction, type ImportState } from "../actions";
 
 export function ImportForm() {
   const t = useTranslations("Admin.import");
   const [state, action, pending] = useActionState<ImportState, FormData>(importAction, null);
+  // Поля управляются состоянием: после действия React сбрасывает форму, а текст нужен для повторного запуска
+  const [body, setBody] = useState("");
+  const [dryRun, setDryRun] = useState(true);
   return (
     <div className="flex flex-col gap-5">
       <form action={action} className="flex flex-col gap-4 rounded-3xl border border-zinc-200 bg-white p-5 shadow-card">
         <label className="flex flex-col gap-1 text-sm font-bold">{t("file")}
-          <input type="file" name="file" accept=".json,.csv,.txt" className="text-sm font-normal" /></label>
+          <input type="file" accept=".json,.csv,.txt" className="text-sm font-normal"
+            onChange={async (e) => { const f = e.target.files?.[0]; if (f && f.size < 5_000_000) setBody((await f.text()).replace(/^\uFEFF/, "")); }} /></label>
         <label className="flex flex-col gap-1 text-sm font-bold">{t("orPaste")}
-          <textarea name="body" rows={10} className="rounded-xl border-2 border-zinc-200 p-3 font-mono text-xs" /></label>
-        <label className="flex items-center gap-2 text-sm font-bold"><input type="checkbox" name="dryRun" defaultChecked />{t("dryRun")}</label>
+          <textarea name="body" value={body} onChange={(e) => setBody(e.target.value)} rows={10} className="rounded-xl border-2 border-zinc-200 p-3 font-mono text-xs" /></label>
+        <label className="flex items-center gap-2 text-sm font-bold"><input type="checkbox" name="dryRun" checked={dryRun} onChange={(e) => setDryRun(e.target.checked)} />{t("dryRun")}</label>
         <button type="submit" disabled={pending} className="self-start rounded-xl btn-primary px-5 py-2.5 font-bold text-white">{pending ? t("working") : t("run")}</button>
       </form>
       {state && "parseError" in state && <p role="alert" className="text-sm font-bold text-red-600">{t("parseError")}</p>}
@@ -29,6 +33,11 @@ export function ImportForm() {
           {state.report.duplicates.length > 0 && (
             <details open><summary className="cursor-pointer font-bold">{t("duplicatesList")}</summary>
               <ul className="mt-2 list-disc pl-5 text-sm">{state.report.duplicates.map((d) => <li key={d.index}>№{d.index + 1}: {d.prompt}</li>)}</ul></details>
+          )}
+          {state.report.similar.length > 0 && (
+            <details open><summary className="cursor-pointer font-bold">{t("similarList", { n: state.report.similar.length })}</summary>
+              <p className="mt-1 text-xs text-zinc-600">{t("similarHint")}</p>
+              <ul className="mt-2 list-disc pl-5 text-sm">{state.report.similar.map((d) => <li key={d.index}>№{d.index + 1}: {d.prompt}</li>)}</ul></details>
           )}
           {state.report.errors.length > 0 && (
             <details open><summary className="cursor-pointer font-bold">{t("errorsList")}</summary>
