@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { Rich } from "@/components/rich";
 import { answerAction, finishAction } from "../../actions";
 
 export type RQuestion = { id: string; passage: string; prompt: string; topic: string; options: { id: string; text: string }[] };
@@ -68,8 +69,8 @@ export function Runner(props: {
       </div>
       <div className="flex flex-col gap-4 rounded-3xl border border-zinc-200 bg-white p-5 shadow-card">
         {q.topic && <p className="text-xs font-bold uppercase text-zinc-500">{q.topic}</p>}
-        {q.passage && <p className="whitespace-pre-line rounded-2xl bg-zinc-100 p-4 text-sm leading-relaxed">{q.passage}</p>}
-        <p className="whitespace-pre-line text-lg font-bold">{q.prompt}</p>
+        {q.passage && <p className="whitespace-pre-line rounded-2xl bg-zinc-100 p-4 text-sm leading-relaxed"><Rich text={q.passage} /></p>}
+        <p className="whitespace-pre-line text-lg font-bold"><Rich text={q.prompt} /></p>
         <ul className="flex flex-col gap-2">
           {q.options.map((o) => {
             const chosen = answers[q.id] === o.id;
@@ -81,7 +82,7 @@ export function Runner(props: {
               <li key={o.id}>
                 <button type="button" onClick={() => pick(o.id)} disabled={practice && Boolean(answers[q.id])}
                   className={`flex w-full items-start gap-3 rounded-xl border-2 px-4 py-3 text-left ${cls}`}>
-                  <span className="font-extrabold uppercase">{o.id}</span><span>{o.text}</span>
+                  <span className="font-extrabold uppercase">{o.id}</span><span><Rich text={o.text} /></span>
                 </button>
               </li>
             );

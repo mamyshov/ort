@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { Rich } from "@/components/rich";
 import { loc } from "@/lib/content";
 import { requireUser } from "@/lib/guards";
 import { closeExpired, reviewAttempt } from "@/lib/ort";
@@ -35,12 +36,12 @@ export default async function ResultsPage({ params }: PageProps<"/[locale]/app/r
           return (
             <li key={it.id} className={`flex flex-col gap-3 rounded-3xl border-2 bg-white p-5 shadow-card ${ok ? "border-emerald-300" : "border-red-300"}`}>
               <p className="text-xs font-bold text-zinc-500">{n + 1} · {ok ? t("right") : it.chosen ? t("wrong") : t("skipped")}</p>
-              {it.passage && <p className="whitespace-pre-line rounded-2xl bg-zinc-100 p-3 text-sm">{loc(it.passage, locale)}</p>}
-              <p className="whitespace-pre-line font-bold">{loc(it.prompt, locale)}</p>
+              {it.passage && <p className="whitespace-pre-line rounded-2xl bg-zinc-100 p-3 text-sm"><Rich text={loc(it.passage, locale)} /></p>}
+              <p className="whitespace-pre-line font-bold"><Rich text={loc(it.prompt, locale)} /></p>
               <ul className="flex flex-col gap-1.5 text-sm">
                 {it.options.map((o) => (
                   <li key={o.id} className={`rounded-lg px-3 py-2 ${o.id === it.correctOption ? "bg-emerald-50 font-bold" : o.id === it.chosen ? "bg-red-50" : ""}`}>
-                    <span className="uppercase">{o.id}</span>) {loc(o.text, locale)}
+                    <span className="uppercase">{o.id}</span>) <Rich text={loc(o.text, locale)} />
                   </li>
                 ))}
               </ul>
