@@ -5,7 +5,7 @@ export type Sql = ReturnType<typeof postgres>;
 export type Tx = postgres.TransactionSql;
 
 declare global {
-  // Одно подключение на процесс (в разработке переживает перезагрузку модулей)
+  // Одно подключение на процесс (в разработке переживает перезагрузку модулей). prepare: false нужен для пула соединений Supabase (режим transaction)
   var __sql: Sql | undefined;
 }
 
@@ -14,7 +14,7 @@ export function service(): Sql {
   if (!globalThis.__sql) {
     const url = process.env.DATABASE_URL;
     if (!url) throw new Error("Не задана переменная DATABASE_URL");
-    globalThis.__sql = postgres(url, { max: 10, onnotice: () => {} });
+    globalThis.__sql = postgres(url, { max: Number(process.env.DB_POOL_MAX) || 5, prepare: false, onnotice: () => {} });
   }
   return globalThis.__sql;
 }
